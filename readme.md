@@ -1,4 +1,5 @@
-### Automated VPN setup w/ Docker ###
+Automated VPN setup w/ Docker
+---
 This project contains scripts and dockerfiles to create VPN server docker images.
 To run, only the following files / folders are needed:
 docker-ikev2
