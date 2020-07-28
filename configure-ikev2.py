@@ -1,8 +1,3 @@
-# script to build docker image of IKEv2 server on standard port using UDP.
-# installs requisite packages, creates docker image, volume, and initiates "run-forever" of the container.
-# outputs a .mobileconfig profile you can install on devices (airdrop to iphone is best for testing).
-# Note by default mobileconfig profiles force the VPN connection until "connect on demand" is
-# turned off, or the profile is removed.
 import os, requests, socket
 
 # Make sure requests library is installed via pip3
@@ -28,7 +23,6 @@ genConfig = open("docker-ikev2/bin/generate-mobileconfig", "w")
 genConfig.writelines(lines)
 genConfig.close()
 
-
 # Build and run docker container for ikev2
 os.system("docker build docker-ikev2 -t docker-ikev2")
 os.system("docker run --privileged -d --name docker-ikev2 "
@@ -39,3 +33,5 @@ os.system("docker run --privileged -d --name docker-ikev2 "
 # Generating the mobileconfig file and output to directory
 os.system("docker run --privileged -i -t --rm --volumes-from "
           "docker-ikev2 -e \"HOST=" + ip + "\" docker-ikev2 generate-mobileconfig > ikev2.mobileconfig")
+
+

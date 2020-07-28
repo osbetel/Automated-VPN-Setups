@@ -1,6 +1,3 @@
-# script to build docker image of openvpn server on PORT 443 using TCP. 
-# installs requisite packages, creates docker image, volume, and initiates "run-forever" of the container.
-# outputs a .ovpn certificate file you can use to connect to the VPN server.
 import os, requests
 
 # Make sure requests library is installed via pip3
