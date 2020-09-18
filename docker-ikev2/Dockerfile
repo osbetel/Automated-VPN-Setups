@@ -1,20 +1,19 @@
-FROM ubuntu:16.04
+FROM alpine:3.6
 
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install strongswan iptables uuid-runtime ndppd openssl \
-    && rm -rf /var/lib/apt/lists/* # cache busted 20160406.1
+ENV HOST HOSTNAME
 
-RUN rm /etc/ipsec.secrets
-RUN mkdir /config
-RUN (cd /etc && ln -s /config/ipsec.secrets .)
+LABEL tags="latest 1.0.2" \
+      build_ver="02-10-2017"
+
+RUN apk -U upgrade \
+    && apk add -U --no-cache openssl util-linux strongswan bash \
+    && rm -rf /var/cache/apk/* \
+    && rm -f /etc/ipsec.secrets
 
 ADD ./etc/* /etc/
 ADD ./bin/* /usr/bin/
 
-VOLUME /etc
-VOLUME /config
-
 EXPOSE 500/udp 4500/udp
 
 CMD /usr/bin/start-vpn
+
