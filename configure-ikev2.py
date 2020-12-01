@@ -1,4 +1,4 @@
-import os, requests, socket
+import os, requests, socket, random
 
 # Make sure requests library is installed via pip3
 os.system("apt install python3-pip")
@@ -7,7 +7,7 @@ os.system("pip3 install requests")
 # Save public server IP for later
 ip = requests.get("http://ifconfig.me").content.decode("utf-8")
 name = socket.gethostname() + " – " + ip
-exclude = "EXCLUDED_SSID"
+exclude = "%032x" % random.getrandbits(128)
 
 # find the name in the generate-mobileconfig file and edit it before the dockerfile is built.
 # : ${PROFILE_NAME="IKEv2 VPN Profile"}

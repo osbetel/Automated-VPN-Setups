@@ -120,6 +120,12 @@ cat <<EOF
                             <key>InterfaceTypeMatch</key>
                             <string>WiFi</string>
                         </dict>
+                        <dict>
+                            <key>Action</key>
+                            <string>Connect</string>
+                            <key>InterfaceTypeMatch</key>
+                            <string>Ethernet</string>
+                        </dict>
                     </array>
                     <!-- The server is authenticated using a certificate -->
                     <key>AuthenticationMethod</key>
