@@ -1,5 +1,12 @@
 import os, requests, socket, random
 
+os.system("sudo apt-get update -y")
+os.system("sudo apt-get install -y ca-certificates curl gnupg lsb-release")
+os.system("curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg")
+os.system("echo \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null")
+os.system("sudo apt-get update -y")
+os.system("sudo apt-get install -y docker-ce docker-ce-cli containerd.io")
+
 # Make sure requests library is installed via pip3
 os.system("apt install python3-pip")
 os.system("pip3 install requests")
